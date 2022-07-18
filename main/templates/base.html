@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans:ital@1&family=Open+Sans:wght@500&family=Sacramento&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Cake Buffet</title>
+    <style>
+        body{
+                font-family: 'Montserrat',sans-serif;
+            }
+        #ni{
+              border: 1px solid white;
+              background-color: white;
+              border-radius: 5px;
+              color: #691d94;
+        }
+        
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg" style="background-color:#691d94;">
+    <a class="navbar-brand" href="{% url 'main:home' %}" style="padding:0px;">
+      <img src="{% static 'cblogo.png' %}" style="height:60px;width: 150px;">
+    </a>
+    <button style="background-color: white;"class="navbar-toggler"type="button"data-toggle="collapse"data-target="#navbarNav"aria-controls="navbarNav"aria-expanded="false"aria-label="Toggle navigation">
+        <i class="fa fa-bars" style="color: #691d94;font-size:29px;"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav ml-auto">
+                <li><a href="{% url 'main:home' %}" id="ni"class="mr-3 nav-link ">Home</a></li>
+            {% if user.is_authenticated %}
+                  <li><a href="{% url 'main:profile' %}" id="ni"class="mr-3 nav-link ">Profile</a></li>
+                  <li><a href="{% url 'main:cart' %}" id="ni"class="mr-3 nav-link ">My Cart</a></li>
+                  <li><a href="{% url 'main:order_details' %}" id="ni"class="mr-3 nav-link ">My Orders</a></li>
+                  <li>
+                      <form class="logout-link" action="{% url 'logout' %}" method="post">
+                          {% csrf_token %}
+                          <button type="submit" style="outline-style: none;"id="ni"class="mr-3 nav-link ">Logout</button>
+                      </form>
+                  </li>
+            {% else %}
+                <li><a href="{% url 'login' %}" id="ni"class="mr-3 nav-link ">Login</a></li>
+                <li><a href="{% url 'signup' %}" id="ni"class="mr-3 nav-link ">SignUp</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+  </nav>
+    <main role="main">
+        {% if messages %}
+          {% for message in messages %}
+            <div id="msg" class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+    </main>
+    {% block content %}{% endblock %}
+    <footer class="bg-light text-center text-white">
+        <div class="container p-4 pb-0">
+          <section class="mb-4">
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #3b5998;border-radius:28px;border-style: none;"
+              href="#!"
+              role="button"
+              ><i class="fa fa-facebook-f"></i
+            ></a>
+      
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #55acee;border-radius:27px;border-style: none;"
+              href="#!"
+              role="button"
+              ><i class="fa fa-twitter"></i
+            ></a>
+      
+      
+            <a
+              class="btn btn-primary btn-floating m-1"
+              style="background-color: #ac2bac;border-radius:28px;border-style: none;"
+              href="https://www.instagram.com/cake_buffet_pondicherry/"
+              role="button"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </section>
+        </div>   
+          <strong class="text-muted">© copyrights all reserved by cakebuffet.com</strong>          
+      </footer>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+      <script>
+          $('.carousel').carousel();
+      </script>
+      <script>
+        var messagee = document.getElementById("msg");
+        setTimeout(function(){
+          messagee.style.display = "none";
+        },2000);
+      </script>
+</body>
+</html>

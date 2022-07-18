@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <p class="h3 text-center mt-3">Order Details</p>
+  <form method="POST" action="{% url 'main:custom_uod'%}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Kg</label>
+      <select class="form-control" name="ckg">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Alternate Address<small class="text-muted">*</small></label>
+      <textarea class="form-control" name="caddr" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Instructions<small class="text-muted">(optional)</small></label>
+        <textarea class="form-control" name="cins" rows="3"></textarea>
+    </div>
+    
+    <button type="submit" style="background-color: #691d94;border-style: none;"class="btn btn-primary" >Place Order</button>
+  </form>
+</div>
+{% endblock %}

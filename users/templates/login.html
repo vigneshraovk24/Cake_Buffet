@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} 
+{% block content %}
+<div style="margin-top: 8%;"class="container">
+    <h1 class="text-center">Login</h1>
+    <div class="form-border">
+        <form class="site-form" action="{% url 'login' %}" method="post">
+            <div class="logging-form">
+                {% csrf_token %}
+                {{ form|crispy }}
+                {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+                {% endif %}
+                <input style="background-color: #691d94;border-style: none;"type="submit" value="Login" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+    <p>New User? <a style="color:#691d94;"href="{% url 'signup' %}" ><u>Sign Up</u></a></p>
+</div>
+{% endblock %}

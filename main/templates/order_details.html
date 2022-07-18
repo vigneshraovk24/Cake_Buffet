@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="cart">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 mt-5">
+                <h3 class="text-center font-weight-bold">Active Orders</h3>
+                {% if items %}
+                <h4 class="text-center">Total Bill Amount: <span class="font-weight-bold"> Rs.{{total}}</span></h4>
+                <h6 class="text-center">Payment mode: <span class="font-weight-bold">Cash on Delivery</span></h6>
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ordered</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Order Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for item_active in items %}
+                        <tr>
+                            <td>{{ item_active.ordered_date }}</td>
+                            <td>{{ item_active.item.title }} <span class="badge badge-{{ item_active.item.label_colour }}">{{ item_active.item.labels }}</span></td>
+                            <td>{{ item_active.item.price }}</td>
+                            <td>{{ item_active.status }}</td>
+                        </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h4 class="text-center">Sorry, you have not ordered any item yet!!!</h4>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mt-5">
+                <h3 class="text-center font-weight-bold">Custom Orders</h3>
+                {% if custom_cart_items %}
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ordered</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Order Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for custom_cart in custom_cart_items %}
+                        <tr>
+                            <td>{{ custom_cart.custom_ordered_date }}</td>
+                            <td>{{ custom_cart.custom_item.custom_title }}</td>
+                            <td>{{ custom_cart.quantity_in_kg }} Kg</td>
+                            <td>{{ custom_cart.custom_total }}</td>
+                            <td>{{ custom_cart.custom_status }}</td>
+                        </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h4 class="text-center">Sorry, you have not ordered any item yet!!!</h4>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 mt-5">
+                <h3 class="text-center font-weight-bold">Past Orders</h3>
+                {% if cart_items %}
+                <div class="table-responsive">
+                    <table class="table table-light">
+                        <thead>
+                        <tr>
+                            <th scope="col">Ordered</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Order Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for cart in cart_items %}
+                        <tr>
+                            <td>{{ cart.ordered_date }}</td>
+                            <td>{{ cart.item.title }} <span class="badge badge-{{ cart.item.label_colour }}">{{ cart.item.labels }}</span></td>
+                            <td>{{ cart.item.price }}</td>
+                            <td>{{ cart.status }}</td>
+                        </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <h4 class="text-center">Sorry, you have not ordered any item yet!!!</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

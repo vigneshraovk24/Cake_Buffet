@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="content-section container">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete Cart Item</legend>
+                <h2>Delete"{{ object.item.title }}"</h2>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-danger" style="background-color: #691d94;border-style: none;"type="submit">Yes</button>
+                <a class="btn btn-success" style="background-color: #691d94;border-style: none;"href="{% url 'main:cart' %}">No</a>
+            </div>
+        </form>
+    </div>
+{% endblock content %}

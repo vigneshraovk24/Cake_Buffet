@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+<div class=" text-center">
+    <img src="{% static 'osuccess.gif' %}" class="rounded" alt="success">
+    <h1 class="display-3">Thank You for ordering !!!</h1>
+    <p class="lead">Order will be delivered in 30 mins</p>
+    <hr>
+    <p>
+      Having trouble? <a href="{% url 'main:home' %}">Contact us</a>
+    </p>
+    <p class="lead">
+      <a class="btn btn-primary btn-sm" style="background-color: #691d94;border-style: none;" href="{% url 'main:home' %}" role="button">Home</a>
+    </p>
+  </div>
+{% endblock %}

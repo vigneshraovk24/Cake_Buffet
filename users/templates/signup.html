@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %} 
+{% block content %}
+<div style="margin-top: 1%;"class="container">
+    <h1 class="text-center">Signup</h1>
+    <div class="form-border">
+        <form class="site-form" action="{% url 'signup' %}" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input style="background-color: #691d94;border-style: none;"type="submit" value="Signup" class="btn btn-success">
+            <input style="background-color: #691d94;border-style: none;"type="reset" value="Cancel" class="btn btn-success">
+        </form>
+    </div>
+</div>
+{% endblock %}
